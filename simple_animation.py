@@ -1,10 +1,12 @@
-# Simple Animation with PyGame, Isaiah Stevens, 1/4/22, 1:14PM, v0,0
+# Simple Animation with PyGame, Isaiah Stevens, 1/4/22, 1:14PM, v0,7
 
 import pygame, sys, time
 from pygame.locals import *
 
+from myFirstPygame import WHITE
+
 # Setup PyGame
-pygame.inti()
+pygame.init()
 
 # Setup the Window
 WINDOWWIDTH = 400
@@ -47,14 +49,44 @@ while True:
         if b['dir'] == DOWNLEFT:
             b['rect'].left -= MOVESPEED
             b['rect'].top += MOVESPEED
-        if b['dir'] == DOWNRIGHT
+        if b['dir'] == DOWNRIGHT:
              b['rect'].left += MOVESPEED
              b['rect'].top += MOVESPEED
         if b ['dir'] == UPLEFT:
             b['rect'].left -= MOVESPEED
-            b['rect'].top += MOVESPEED
+            b['rect'].top -= MOVESPEED
         if b['dir'] == UPRIGHT:
             b['rect'].left += MOVESPEED
             b['rect'].top -= MOVESPEED
 
-            
+        if b['rect'].top < 0:
+            # The box has moved past the top.
+            if b['dir'] == UPLEFT:
+                b['dir'] = DOWNLEFT
+            if b['dir'] == UPRIGHT:
+                b['dir'] = DOWNRIGHT
+        if b['rect'].bottom > WINDOWHEIGHT:
+            # The box has moved past the bottom
+            if b['dir'] == DOWNLEFT:
+                b['dir'] = UPLEFT
+            if b['dir'] == DOWNRIGHT:
+                b['dir'] = UPRIGHT
+        if b['rect'].left < 0:
+            # The box has moved past the left.
+            if b['dir'] == DOWNLEFT:
+                b['dir'] = DOWNRIGHT
+            if b['dir'] == UPLEFT:
+                b['dir'] = UPRIGHT
+        if b['rect'].right > WINDOWWIDTH:
+            # The box has moved past the right.
+            if b['dir'] == DOWNRIGHT:
+                b['dir'] = DOWNLEFT
+            if b['dir'] == UPLEFT:
+                b['dir'] = UPRIGHT
+
+        # Draw the box onto the game surface.
+        pygame.draw.rect(windowSurface, b['color'], b['rect'])
+
+    # Draw the window to the screen.
+    pygame.display.update()
+    time.sleep(0.02)
