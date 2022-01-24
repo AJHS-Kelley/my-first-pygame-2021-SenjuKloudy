@@ -3,8 +3,6 @@
 import pygame, sys, time
 from pygame.locals import *
 
-from myFirstPygame import WHITE
-
 # Setup PyGame
 pygame.init()
 
