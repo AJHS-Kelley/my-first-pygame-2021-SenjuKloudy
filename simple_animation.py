@@ -4,7 +4,7 @@ import pygame, sys, time
 from pygame.locals import *
 
 # Setup PyGame
-pygame.inti()
+pygame.inti() # .init() not .inti()
 
 # Setup the Window
 WINDOWWIDTH = 400
@@ -47,7 +47,7 @@ while True:
         if b['dir'] == DOWNLEFT:
             b['rect'].left -= MOVESPEED
             b['rect'].top += MOVESPEED
-        if b['dir'] == DOWNRIGHT
+        if b['dir'] == DOWNRIGHT # Missing : after DOWNRIGHT
              b['rect'].left += MOVESPEED
              b['rect'].top += MOVESPEED
         if b ['dir'] == UPLEFT:
@@ -57,4 +57,4 @@ while True:
             b['rect'].left += MOVESPEED
             b['rect'].top -= MOVESPEED
 
-            
+            # Code is not completed. 
